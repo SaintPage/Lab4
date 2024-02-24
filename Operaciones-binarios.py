@@ -5,22 +5,32 @@
 #Función para entero a binario
 def entero_a_binario():
     num = int(input("Ingresa un número entero: "))
-    #se utiliza para dar formato a los valores especificados 
-    binario = format(num, '08b')
-    print(f"El número binario de 8 bits es: {binario}")
+    if num >= 0 and num <= 256:
+        binario = format(num, '08b')
+        print(f"El número binario de 8 bits es: {binario}")
+    else:
+        print("El número debe estar en el rango de 0 a 255.")
 
 def binario_a_complemento_dos():
     num = input("Ingresa un número binario de 8 bits: ")
-    if num[0] == '1':
-        num = ''.join('1' if bit == '0' else '0' for bit in num)
-        #devuelve un entero, recibiendo carácteres binarios
-        num = bin(int(num, 2) + 1)[2:]
-    print(f"La representación en complemento a dos es: {num}")
+    #Acetar valores 0 y 1
+    if len(num) == 8 and all(c in '01' for c in num):
+        if num[0] == '1':
+            num = ''.join('1' if bit == '0' else '0' for bit in num)
+            num = bin(int(num, 2) + 1)[2:]
+        print(f"La representación en complemento a dos es: {num}")
+    else:
+        print("Por favor, ingresa un número binario de 8 bits, 0 y 1.")
 
 def hexadecimal_a_decimal():
     num = input("Ingresa un número hexadecimal de 3 dígitos: ")
-    decimal = int(num, 16)
-    print(f"El número decimal es: {decimal}")
+    # Aceptar características  del 0 al 9 y del a a la f, tanto en minúsculas como mayúsculas  
+    if len(num) == 3 and all(c in '0123456789abcdefABCDEF' for c in num):
+        decimal = int(num, 16)
+        print(f"El número decimal es: {decimal}")
+    else:
+        print("Por favor, ingresa un número hexadecimal de 3 dígitos.")
+
 
 def decimal_a_hexadecimal():
     # Solicita al usuario uqe ingrese un número decimal
@@ -53,7 +63,7 @@ def menu():
         elif opcion == 4:
             decimal_a_hexadecimal()
         elif opcion == 5:
-            print("Hasta luego.")
+            print("Gracias por usar mi programa .")
             break
         else:
             print("Opción no válida, ingrese una opción correcta.")
