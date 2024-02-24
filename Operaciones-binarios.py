@@ -5,7 +5,7 @@
 #Función para entero a binario
 def entero_a_binario():
     num = int(input("Ingresa un número entero: "))
-    if num >= 0 and num <= 256:
+    if num >= 0 and num <= 255:
         binario = format(num, '08b')
         print(f"El número binario de 8 bits es: {binario}")
     else:
